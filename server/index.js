@@ -18,8 +18,14 @@ const io = new Server(server, {
 
 io.on("connection", (socket) => {
   console.log(`User Connected: ${socket.id}`);
+
+  socket.on("send_message", (data) => {
+    console.log(`Message received: ${data}`);
+    io.brodcast("receive_message", data); // Broadcast to all clients
+  });
+
   socket.on("disconnect", () => {
-    console.log("user disconnected", socket.id);
+    console.log("User disconnected", socket.id);
   });
 });
 
