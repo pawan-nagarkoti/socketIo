@@ -5,25 +5,20 @@ import io from "socket.io-client";
 const socket = io.connect("http://localhost:3000");
 
 function App() {
-  const [data, setData] = useState("");
+  const [textMessage, setTextMessage] = useState("");
 
-  useEffect(() => {
-    // Fetch data from Node.js server
-    axios
-      .get("http://localhost:3000/api/data")
-      .then((response) => {
-        setData(response.data.message);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  }, []);
-
+  const handleSubmitForm = (e) => {
+    e.preventDefault();
+    console.log("textMessage", textMessage);
+    setTextMessage("");
+  };
   return (
-    <div>
-      <h1>React Frontend</h1>
-      <p>Message from Node.js: {data}</p>
-    </div>
+    <>
+      <form action="" onClick={handleSubmitForm}>
+        <input type="text" name="" id="" value={textMessage} onChange={(e) => setTextMessage(e.target.value)} />
+        <button>submit</button>
+      </form>
+    </>
   );
 }
 
