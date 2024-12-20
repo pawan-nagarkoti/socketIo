@@ -22,6 +22,7 @@ function App() {
   useEffect(() => {
     const receiveMessageHandler = (data) => {
       setMessageList((list) => [...list, data]);
+      // alert("hiii");
     };
 
     socket.on("receive_message", receiveMessageHandler);
@@ -30,7 +31,7 @@ function App() {
     return () => {
       socket.off("receive_message", receiveMessageHandler);
     };
-  }, []);
+  }, [socket]);
 
   return (
     <>

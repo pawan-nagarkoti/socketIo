@@ -21,7 +21,7 @@ io.on("connection", (socket) => {
 
   socket.on("send_message", (data) => {
     console.log(`Message received: ${data}`);
-    io.brodcast("receive_message", data); // Broadcast to all clients
+    socket.broadcast.emit("receive_message", data);
   });
 
   socket.on("disconnect", () => {
